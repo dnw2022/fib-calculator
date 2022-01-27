@@ -15,7 +15,7 @@ jobs:
 
       - name: Run tests
         run: |
-          docker build -t react-test -f Dockerfile.dev .
+          docker build -t react-test -f ./client/Dockerfile.dev ./client
           docker run -e CI=true react-test npm test
 
       - name: Build images
