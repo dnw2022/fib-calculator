@@ -43,14 +43,15 @@ jobs:
 
       # - name: Generate deployment package
       #   run: zip -r deploy.zip . -x '*.git*'
+      #   run: zip deploy.zip ./docker-compose.yml # (I think we only need a docker-compose.yml file in the zip file like this)
 
       # - name: Deploy to EB
       #   uses: einaregilsson/beanstalk-deploy@v18
       #   with:
       #     aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
       #     aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-      #     application_name: docker-react
-      #     environment_name: Dockerreact-env
+      #     application_name: fib-calc
+      #     environment_name: Fibcalc-env
       #     existing_bucket_name: elasticbeanstalk-eu-central-1-334920449303
       #     region: eu-central-1
       #     version_label: ${{ github.sha }}
