@@ -18,15 +18,15 @@ jobs:
           docker build -t react-test -f ./client/Dockerfile.dev ./client
           docker run -e CI=true react-test npm test
 
+      - name: Login to docker hub
+        run: echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u ${{ env.DOCKER_HUB_USERNAME }} --password-stdin
+
       - name: Build images
         run: |
           docker build -t dnw2022/fib-calc-client ./client
           docker build -t dnw2022/fib-calc-server ./server
           docker build -t dnw2022/fib-calc-worker ./worker
           docker build -t dnw2022/fib-calc-nginx ./nginx
-
-      - name: Login to docker hub
-        run: echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u ${{ env.DOCKER_HUB_USERNAME }} --password-stdin
 
       - name: Push images to docker hub
         run: |
