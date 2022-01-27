@@ -22,3 +22,15 @@ after_success:
   - docker push dnw2022/fib-calc-server
   - docker push dnw2022/fib-calc-worker
   - docker push dnw2022/fib-calc-nginx
+
+# deploy:
+#   provider: elasticbeanstalk
+#   region: "eu-central-1"
+#   app: "docker-react"
+#   env: "Dockerreact-env"
+#   bucket_name: "elasticbeanstalk-eu-central-1-334920449303"
+#   bucket_path: "docker-react"
+#   on:
+#     branch: master
+#   access_key_id: "$AWS_ACCESS_KEY" # does not work without quotes!
+#   secret_access_key: "$AWS_SECRET_KEY" # remember to escape environment variables in travis-ci if necessary
