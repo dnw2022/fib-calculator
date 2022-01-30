@@ -69,3 +69,34 @@ http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kube
 Get token using:
 
 kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/admin-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
+
+# Google Cloud deploy
+
+See: https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/17417508#questions
+
+Use the kubernetes terminal to create a secret:
+
+kubectl create secret generic <secret_name> --from-literal <secrets_key_value_pairs> 
+
+Also install helm:
+
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+
+And ingress using helm:
+
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm install my-release ingress-nginx/ingress-nginx
+
+# Kubernetes custom domain google cloud
+
+https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/25482916#search
+https://cert-manager.io/docs/installation/kubernetes/#installing-with-helm
+
+# Skaffold
+
+https://skaffold.dev/docs/install/
+
+curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-darwin-arm64 && \
+sudo install skaffold /usr/local/bin/
