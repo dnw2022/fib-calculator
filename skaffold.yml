@@ -1,0 +1,39 @@
+apiVersion: skaffold/v2beta26
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./k8s/*
+build:
+  local:
+    push: false
+  artifacts:
+    - image: dnw2022/fib-calc-client
+      context: client
+      docker:
+        dockerfile: Dockerfile.dev
+      sync:
+        manual:
+          - src: "src/**/*.js"
+            dest: .
+          - src: "src/**/*.css"
+            dest: .
+          - src: "src/**/*.html"
+            dest: .
+    - image: dnw2022/fib-calc-worker
+      context: worker
+      docker:
+        dockerfile: Dockerfile.dev
+      sync:
+        manual:
+          - src: "*.js"
+            dest: .
+    - image: dnw2022/fib-calc-server
+      context: server
+      docker:
+        dockerfile: Dockerfile.dev
+      sync:
+        manual:
+          - src: "*.js"
+            dest: .
+  

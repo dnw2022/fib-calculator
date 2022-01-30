@@ -98,5 +98,6 @@ https://cert-manager.io/docs/installation/kubernetes/#installing-with-helm
 
 https://skaffold.dev/docs/install/
 
-curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-darwin-arm64 && \
-sudo install skaffold /usr/local/bin/
+brew install skaffold
+
+BUG: had to add ENV CI=true to the client Dockerfile.dev to prevent it from continously crashing. Only happens when running using skaffold! See: https://github.com/GoogleContainerTools/skaffold/issues/3882

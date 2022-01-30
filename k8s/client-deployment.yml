@@ -15,9 +15,9 @@ spec:
       containers:
       - name: client
         image: dnw2022/fib-calc-client
-        # resources:
-        #   limits:
-        #     memory: "128Mi"
-        #     cpu: "500m"
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
         ports:
         - containerPort: 3000
