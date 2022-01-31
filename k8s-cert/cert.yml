@@ -8,6 +8,7 @@ spec:
   issuerRef:
     # this references the issuer name in the cert-issuer.yml file
     name: letsencrypt-prod
+    kind: ClusterIssuer
   dnsNames:
   # this will be the certificate common name (CN)
   # - '*.dotnet-works.com'
