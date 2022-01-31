@@ -27,9 +27,9 @@ jobs:
           echo "${{ secrets.GKE_SERVICE_ACCOUNT_KEY_FILE_JSON }}" | base64 --decode > ./service-account.json
           gcloud auth activate-service-account --key-file service-account.json
           rm service-account.json
-          gcloud config set project $GKE_PROJECT_ID
-          gcloud config set compute/zone $GKE_ZONE
-          gcloud container clusters get-credentials "$GKE_CLUSTER"
+          gcloud config set project "${{ env.GKE_PROJECT_ID }}"
+          gcloud config set compute/zone "${{ env.GKE_ZONE }}"
+          gcloud container clusters get-credentials "${{ env.GKE_CLUSTER }}"
           chmod +x ./deploy.sh
 
       - name: Deploy to GKE
