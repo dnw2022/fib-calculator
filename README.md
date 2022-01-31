@@ -139,7 +139,10 @@ kubectl create secret generic cloudflare-api-token-secret --from-literal api-tok
 
 kubectl get clusterIssuers
 kubectl get cr -n default
+kubectl get order
+kubectl get challenge
 kubectl get certificates -n default
+
 
 # Skaffold
 

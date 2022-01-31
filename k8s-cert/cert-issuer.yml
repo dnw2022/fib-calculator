@@ -17,7 +17,7 @@ spec:
           cloudflare:
             email: jeroen_bijlsma@yahoo.com
             apiKeySecretRef:
-              name: cloudflare-api-key-secret
+              name: cloudflare-api-token-secret
               key: api-key
         selector:
           dnsNames:
