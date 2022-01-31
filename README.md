@@ -106,6 +106,12 @@ And ingress using helm:
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm install my-release ingress-nginx/ingress-nginx
 
+# GKE deploy with service account in github actions
+
+create a service-account for the kubernetes cluster and download the json file with the keypair. Then base64 encode it and add it in github as a secret:
+
+cat multi-k8s-339908-e1853ea369e6.json | base64
+
 # GKE alternative for service account in github actions
 
 https://cloud.google.com/blog/products/identity-security/enabling-keyless-authentication-from-github-actions
