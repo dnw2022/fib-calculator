@@ -135,7 +135,9 @@ helm install \
 
 Cloudflare setup. See: https://cert-manager.io/docs/configuration/acme/dns01/cloudflare/
 
-kubectl create secret generic cloudflare-api-token-secret --from-literal api-token=xxx
+Beware: https://github.com/jetstack/cert-manager/issues/263
+
+kubectl create secret generic cloudflare-api-token-secret -n cert-manager --from-literal api-token=xxx
 
 kubectl get clusterIssuers
 kubectl get cr -n default
