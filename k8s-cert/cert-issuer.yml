@@ -7,7 +7,7 @@ spec:
     # You must replace this email address with your own.
     # Let's Encrypt will use this to contact you about expiring
     # certificates, and issues related to your account.
-    email: info@dotnet-works.com
+    email: jeroen_bijlsma@yahoo.com
     server: https://acme-staging-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       # Secret resource that will be used to store the account's private key.
@@ -15,11 +15,11 @@ spec:
     solvers:
       - dns01:
           cloudflare:
-            email: info@dotnet-works.com
+            email: jeroen_bijlsma@yahoo.com
             apiKeySecretRef:
-              name: cloudflare-apikey-secret
-              key: apikey
+              name: cloudflare-api-key-secret
+              key: api-key
         selector:
           dnsNames:
-          - 'dotnet-works.com'
-          - '*.dotnet-works.com'
+          # - '*.example.org'
+          - 'fib-calc.dotnet-works.com'

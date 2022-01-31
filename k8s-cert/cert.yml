@@ -10,7 +10,8 @@ spec:
     name: letsencrypt-staging
   dnsNames:
   # this will be the certificate common name (CN)
-  - '*.dotnet-works.com'
+  # - '*.dotnet-works.com'
+    - 'fib-calc.dotnet-works.com'
   # and these will be the certificate alternative names (SANs)
   # - example.com
   # - example.org

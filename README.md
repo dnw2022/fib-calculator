@@ -121,6 +121,21 @@ https://cloud.google.com/blog/products/identity-security/enabling-keyless-authen
 https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/25482916#search
 https://cert-manager.io/docs/installation/kubernetes/#installing-with-helm
 
+kubectl create namespace cert-manager
+helm repo add jetstack https://charts.jetstack.io
+helm repo update
+
+helm install \
+  cert-manager jetstack/cert-manager \
+  --namespace cert-manager \
+  --create-namespace \
+  --version v1.7.0 \
+  --set installCRDs=true
+
+Cloudflare setup. See: https://cert-manager.io/docs/configuration/acme/dns01/cloudflare/
+
+kubectl create secret generic cloudflare-api-token-secret --from-literal api-token=xxx
+
 # Skaffold
 
 https://skaffold.dev/docs/install/
