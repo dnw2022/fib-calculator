@@ -4,7 +4,6 @@ services:
 
 env:
   global:
-    - GIT_SHA=$(git rev-parse HEAD)
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 
 before_install:
@@ -25,6 +24,6 @@ script:
 
 deploy:
   provider: script
-  script: ./deploy.sh
+  script: bash ./deploy.sh
   on:
     branch: master

@@ -1,3 +1,5 @@
+GIT_SHA=$(git rev-parse HEAD)
+
 docker build -t dnw2022/fib-calc-client:latest -t dnw2022/fib-calc-client:$GIT_SHA -f ./client/Dockerfile ./client
 docker build -t dnw2022/fib-calc-server:latest -t dnw2022/fib-calc-server:$GIT_SHA -f ./server/Dockerfile ./server
 docker build -t dnw2022/fib-calc-worker:latest -t dnw2022/fib-calc-worker:$GIT_SHA -f ./worker/Dockerfile ./worker
