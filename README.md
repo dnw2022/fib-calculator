@@ -106,6 +106,10 @@ And ingress using helm:
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm install my-release ingress-nginx/ingress-nginx
 
+# GKE alternative for service account in github actions
+
+https://cloud.google.com/blog/products/identity-security/enabling-keyless-authentication-from-github-actions
+
 # Kubernetes custom domain google cloud
 
 https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/25482916#search
