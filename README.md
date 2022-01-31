@@ -70,13 +70,30 @@ Get token using:
 
 kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/admin-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
 
+# Travis deploy
+
+docker run -it -v $(pwd):/app ruby:2.4 sh
+gem install travis
+
+https://docs.travis-ci.com/user/github-oauth-scopes/#repositories-on-httpstravis-cicom-private-and-public:
+
+travis login --github-token <github_token> --com
+
+travis encrypt-file service-account.json -r dnw2022/fib-calculator --com
+
 # Google Cloud deploy
 
 See: https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/17417508#questions
 
-Use the kubernetes terminal to create a secret:
+Initialize the google cloud terminal:
 
-kubectl create secret generic <secret_name> --from-literal <secrets_key_value_pairs> 
+gcloud config set project multi-k8s-339908
+gcloud config set compute/zone europe-central2-a
+gcloud container clusters get-credentials multi-cluster
+
+Use the kubernetes terminal to create a secret for the postgres-pwd:
+
+kubectl create secret generic postgres-pwd --from-literal PGPASSWORD=postgres_password_xxxx
 
 Also install helm:
 

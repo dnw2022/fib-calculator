@@ -1,0 +1,36 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true react-test npm test
+
+after_success:
+  - docker build -t dnw2022/fib-calc-client ./client
+  - docker build -t dnw2022/fib-calc-server ./server
+  - docker build -t dnw2022/fib-calc-worker ./worker
+  - docker build -t dnw2022/fib-calc-nginx ./nginx
+
+  # Log in to docker cli
+  - echo "$DOCKER_PASSWORD" | docker login -u $DOCKER_ID --password-stdin
+
+  # push to docker hub
+  - docker push dnw2022/fib-calc-client
+  - docker push dnw2022/fib-calc-server
+  - docker push dnw2022/fib-calc-worker
+  - docker push dnw2022/fib-calc-nginx
+
+# deploy:
+#   provider: elasticbeanstalk
+#   region: "eu-central-1"
+#   app: "docker-react"
+#   env: "Dockerreact-env"
+#   bucket_name: "elasticbeanstalk-eu-central-1-334920449303"
+#   bucket_path: "docker-react"
+#   on:
+#     branch: master
+#   access_key_id: "$AWS_ACCESS_KEY" # does not work without quotes!
+#   secret_access_key: "$AWS_SECRET_KEY" # remember to escape environment variables in travis-ci if necessary
