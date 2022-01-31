@@ -30,6 +30,7 @@ jobs:
           gcloud config set project $GKE_PROJECT_ID
           gcloud config set compute/zone $GKE_ZONE
           gcloud container clusters get-credentials "$GKE_CLUSTER"
+          chmod +x ./deploy.sh
 
       - name: Deploy to GKE
         run: ./deploy.sh
