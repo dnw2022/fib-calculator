@@ -4,6 +4,7 @@ services:
 
 env:
   global:
+    - GIT_SHA=(git rev-parse HEAD)
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 
 before_install:
@@ -15,10 +16,11 @@ before_install:
   - gcloud config set project multi-k8s-339908
   - gcloud config set compute/zone europe-central2-a
   - gcloud container clusters get-credentials multi-cluster
-  - docker build -t react-test -f ./client/Dockerfile.dev ./client
+  #- docker build -t react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true react-test npm test
+  - echo 'deploying'
+  #- docker run -e CI=true react-test npm test
 
 deploy:
   provider: script
