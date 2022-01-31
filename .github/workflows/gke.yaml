@@ -6,7 +6,8 @@ on:
       - master
 
 env:
-  DOCKER_HUB_USERNAME: dnw2022
+  DOCKER_ID: dnw2022
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_TOKEN }}
   GKE_PROJECT_ID: ${{ secrets.GKE_PROJECT_ID }}
   GKE_CLUSTER: multi-cluster
   GKE_ZONE: europe-central2-a
