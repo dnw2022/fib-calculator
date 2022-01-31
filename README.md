@@ -143,6 +143,20 @@ kubectl get order
 kubectl get challenge
 kubectl get certificates -n default
 
+kubectl get deployment -n cert-manager
+
+kubectl scale --replicas=0 deployment my-release-ingress-nginx-controller
+
+kubectl scale --replicas=0 deployment cert-manager -n cert-manager
+kubectl scale --replicas=0 deployment cert-manager-cainjector -n cert-manager
+kubectl scale --replicas=0 deployment cert-manager-webhook -n cert-manager
+
+kubectl scale --replicas=1 deployment cert-manager -n cert-manager
+kubectl scale --replicas=1 deployment cert-manager-cainjector -n cert-manager
+kubectl scale --replicas=1 deployment cert-manager-webhook -n cert-manager
+
+kubectl delete order --all && kubectl delete challenge --all && kubectl delete certificates --all
+kubectl get order,challenge,certificates
 
 # Skaffold
 
