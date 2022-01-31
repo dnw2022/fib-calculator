@@ -1,10 +1,10 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: dotnet-works-com
+  name: fib-calc-dotnet-works-com
   namespace: default
 spec:
-  secretName: example-com-tls
+  secretName: fib-calc-dotnet-works-com-tls
   issuerRef:
     # this references the issuer name in the cert-issuer.yml file
     name: letsencrypt-staging
