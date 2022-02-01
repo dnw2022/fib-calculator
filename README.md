@@ -123,21 +123,22 @@ https://cert-manager.io/docs/installation/kubernetes/#installing-with-helm
 https://zozoo.io/kubernetes-certmanager-with-dns-authenticator-using-cloudflare/
 
 kubectl create namespace cert-manager
-helm repo add jetstack https://charts.jetstack.io
-helm repo update
-
-helm install \
-  cert-manager jetstack/cert-manager \
-  --namespace cert-manager \
-  --create-namespace \
-  --version v1.7.0 \
-  --set installCRDs=true
-
-Cloudflare setup. See: https://cert-manager.io/docs/configuration/acme/dns01/cloudflare/
 
 Beware: https://github.com/jetstack/cert-manager/issues/263
 
 kubectl create secret generic cloudflare-api-key-secret -n cert-manager --from-literal api-key=xxx
+
+helm repo add jetstack https://charts.jetstack.io
+helm repo update
+
+kubectl namespace create cert-manager
+helm install \
+  cert-manager jetstack/cert-manager \
+  --namespace cert-manager \
+  --version v1.7.0 \
+  --set installCRDs=true
+
+Cloudflare setup. See: https://cert-manager.io/docs/configuration/acme/dns01/cloudflare/
 
 kubectl get clusterIssuers
 kubectl get cr -n default
@@ -158,7 +159,7 @@ kubectl scale --replicas=1 deployment cert-manager-cainjector -n cert-manager
 kubectl scale --replicas=1 deployment cert-manager-webhook -n cert-manager
 
 kubectl delete order --all && kubectl delete challenge --all && kubectl delete certificates --all
-kubectl get order,challenge,certificates
+kubectl get clusterIssuer,order,challenge,certificates
 
 # Skaffold
 
