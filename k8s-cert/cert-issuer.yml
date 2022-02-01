@@ -24,6 +24,8 @@ spec:
             #   name: cloudflare-api-key-secret
             #   key: api-key
         selector:
-          dnsNames:
-          - '*.dotnet-works.com'
+          # dnsNames:
+          # - '*.dotnet-works.com'
           # - 'fib-calc.dotnet-works.com'
+          dnsZones:
+          - "dotnet-works.com"
