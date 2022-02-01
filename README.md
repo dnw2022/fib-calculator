@@ -186,6 +186,13 @@ Make sure to create the correct type of token in the Cloudflare dashboard
 kubectl scale --replicas=0 deployment my-release-ingress-nginx-controller
 kubectl scale --replicas=1 deployment my-release-ingress-nginx-controller
 
+# cert-manager ingress certificate generation
+
+cert-manager.io/cluster-issuer: 'letsencrypt-prod'
+
+The ingress-shim component of cert-manager watches ingress resources 
+and automatically creates Certificate resources. The alternative is to create explicit Certificate objects.
+
 # Skaffold
 
 https://skaffold.dev/docs/install/
