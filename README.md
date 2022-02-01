@@ -140,6 +140,8 @@ helm install \
 
 Cloudflare setup. See: https://cert-manager.io/docs/configuration/acme/dns01/cloudflare/
 
+kubectl get Issuers,ClusterIssuers,Certificates,CertificateRequests,Orders,Challenges --all-namespaces
+
 kubectl get clusterIssuers
 kubectl get cr -n default
 kubectl get order
@@ -147,8 +149,6 @@ kubectl get challenge
 kubectl get certificates -n default
 
 kubectl get deployment -n cert-manager
-
-kubectl scale --replicas=0 deployment my-release-ingress-nginx-controller
 
 kubectl scale --replicas=0 deployment cert-manager -n cert-manager
 kubectl scale --replicas=0 deployment cert-manager-cainjector -n cert-manager
@@ -160,6 +160,31 @@ kubectl scale --replicas=1 deployment cert-manager-webhook -n cert-manager
 
 kubectl delete order --all && kubectl delete challenge --all && kubectl delete certificates --all
 kubectl get clusterIssuer,order,challenge,certificates
+
+NOTES:
+
+- the Cloudflare apiToken secret needs to be in the namespace where the cert-manager pod is running 
+
+- For the issuer you can use 2 different types of Cloudflare tokens (here we use the apiToken instead of the global apiKey).
+
+So:
+
+apiTokenSecretRef:
+  name: cloudflare-api-key-secret
+  key: api-key
+
+And not:
+
+apiKeySecretRef:
+  name: cloudflare-api-key-secret
+  key: api-key
+
+Make sure to create the correct type of token in the Cloudflare dashboard
+
+- For the new cert (new issuer basically) to be picked up by nginx scale down and up the deployment like so:
+
+kubectl scale --replicas=0 deployment my-release-ingress-nginx-controller
+kubectl scale --replicas=1 deployment my-release-ingress-nginx-controller
 
 # Skaffold
 
