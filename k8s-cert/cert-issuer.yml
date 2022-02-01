@@ -25,5 +25,5 @@ spec:
             #   key: api-key
         selector:
           dnsNames:
-          # - '*.example.org'
-          - 'fib-calc.dotnet-works.com'
+          - '*.dotnet-works.com'
+          # - 'fib-calc.dotnet-works.com'
