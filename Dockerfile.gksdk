@@ -1,0 +1,7 @@
+FROM google/cloud-sdk:alpine
+WORKDIR /app
+RUN gcloud components install kubectl
+#RUN gcloud auth login
+#RUN gcloud config set project multi-k8s-339908
+#RUN gcloud config set compute/zone europe-central2-a
+#RUN gcloud container clusters get-credentials multi-cluster

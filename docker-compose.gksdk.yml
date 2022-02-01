@@ -1,0 +1,13 @@
+version: '3'
+services:
+  gksdk:
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    build:
+      dockerfile: Dockerfile.gksdk
+      context: .
+    volumes:
+      - .:/app
+
+# to use it:
+# docker-compose --file docker-compose.gksdk.yml run --rm gksdk
