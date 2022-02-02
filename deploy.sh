@@ -20,5 +20,3 @@ kubectl rollout restart deployment/client-deployment
 kubectl rollout restart deployment/server-deployment
 kubectl rollout restart deployment/worker-deployment
 kubectl rollout restart deployment/my-release-ingress-nginx-controller
-
-kubectl apply -f k8s-cert
